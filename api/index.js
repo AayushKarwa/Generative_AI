@@ -15,7 +15,7 @@ const constraintMessage = 'Only respond with information related to animals. If 
 // In-memory store for history
 const history = [];
 
-app.post('/api/generate-content', async (req, res) => {
+app.post('/generate-content', async (req, res) => {
   try {
     const { prompt } = req.body;
 
@@ -39,7 +39,7 @@ app.post('/api/generate-content', async (req, res) => {
   }
 });
 
-app.get('/api/history', (req, res) => {
+app.get('/history', (req, res) => {
   res.json(history);
 });
 
