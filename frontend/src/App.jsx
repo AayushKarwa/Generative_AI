@@ -12,7 +12,7 @@ function App() {
     // Fetch history on component mount
     const fetchHistory = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/history');
+        const response = await axios.get('/api/history');
         setHistory(response.data);
       } catch (error) {
         console.error('Error fetching history:', error);
@@ -27,7 +27,8 @@ function App() {
     setLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:3001/generate-content', { prompt });
+      const response = await axios.post('/api/generate-content', { prompt });
+
       setGeneratedText(response.data.text);
       setHistory(response.data.history); // Update history with the new response
     } catch (error) {
