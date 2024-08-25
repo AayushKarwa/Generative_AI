@@ -15,11 +15,11 @@ const constraintMessage = 'Only respond with information related to animals. If 
 // In-memory store for history
 const history = [];
 
-app.post('/generate-content', async (req, res) => {
+app.post('/api/generate-content', async (req, res) => {
   try {
     const { prompt } = req.body;
 
-    // Basic validation (optional)
+    // validation 
     if (!prompt || prompt.length < 5) {
       return res.status(400).json({ error: 'Prompt must be at least 5 characters long.' });
     }
@@ -29,7 +29,7 @@ app.post('/generate-content', async (req, res) => {
     const response = await result.response;
     const text = await response.text();
 
-    // Save to history
+    //  history
     history.push({ prompt, text });
 
     res.json({ text, history });
@@ -39,7 +39,7 @@ app.post('/generate-content', async (req, res) => {
   }
 });
 
-app.get('/history', (req, res) => {
+app.get('/api/history', (req, res) => {
   res.json(history);
 });
 
