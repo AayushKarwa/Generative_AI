@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 
@@ -9,7 +9,6 @@ function App() {
   const [history, setHistory] = useState([]);
 
   useEffect(() => {
-    // Fetch history on component mount
     const fetchHistory = async () => {
       try {
         const response = await axios.get('/api/history');
@@ -28,7 +27,6 @@ function App() {
 
     try {
       const response = await axios.post('/api/generate-content', { prompt });
-
       setGeneratedText(response.data.text);
       setHistory(response.data.history); // Update history with the new response
     } catch (error) {
